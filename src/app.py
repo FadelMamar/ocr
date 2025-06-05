@@ -3,8 +3,11 @@ from llama_index.core.llms import ChatMessage, ImageBlock,TextBlock
 import os
 from llama_index.llms.google_genai import GoogleGenAI
 import base64
+import logging
 
 ls.configure_logging(use_rich=True)
+
+logger = logging.getLogger("OCR")
 
 def perform_ocr(prompt:str,image:bytes, llm):
 
@@ -34,6 +37,8 @@ class OCR(ls.LitAPI):
             raise ValueError("GOOGLE_API_KEY env variable is not set.")
         
         model = os.environ.get("GOOGLE_MODEL","gemini-2.5-flash-preview-04-17")
+
+        logger.info(f"Loading model: {model}")
 
         self.llm = GoogleGenAI(
             model=model,
