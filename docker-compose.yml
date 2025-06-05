@@ -1,0 +1,14 @@
+# env_file: .env
+
+services:
+
+  ocr:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    image: ocr:latest
+    environment:
+      GOOGLE_API_KEY: 
+      GOOGLE_MODEL: gemini-2.5-flash-preview-04-17
+    ports:
+      - "4242:4242"
