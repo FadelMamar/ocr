@@ -68,8 +68,7 @@ This project addresses these limitations by:
 
 ### ✅ Phase 1: Python MVP (In Progress)
 
-* [x] Image upload endpoint (FastAPI)
-* [x] Basic OCR extraction (Tesseract)
+* [x] Image upload endpoint (Litserve)
 * [x] LLM integration to enhance or correct OCR output
 * [x] Dockerized deployment
 
