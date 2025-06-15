@@ -1,12 +1,7 @@
-Here's a polished and professional `README.md` draft for your GitHub OCR project:
-
----
-
 # 🧠 OCR-as-a-Service (LLM-Powered Optical Character Recognition)
 
 Welcome to the OCR project! This repository hosts a performant and extensible web service that performs **Optical Character Recognition (OCR)** using **Large Language Models (LLMs)** via API calls. The initial implementation is in **Python**, with plans to introduce **Rust** for further performance gains.
 
-📍 **Live repository**: [github.com/FadelMamar/ocr](https://github.com/FadelMamar/ocr/tree/main)
 
 ---
 
@@ -63,7 +58,7 @@ This project addresses these limitations by:
 | Language          | Python (Rust planned)                              |
 | Model API         | OpenAI / Claude / Other LLM APIs                   |
 | OCR Engine        | Tesseract (for baseline) + optional LLM refinement |
-| API Framework     | FastAPI (Python)                                   |
+| API Framework     | Litserve (Python)                                   |
 | Performance Focus | Rust rewrite (planned) for speed-critical modules  |
 | Testing           | Pytest + Benchmark tools                           |
 
@@ -95,7 +90,7 @@ This project addresses these limitations by:
 
 ### Prerequisites
 
-* Python 3.9+
+* Python 3.11+
 * Docker (optional)
 * OpenAI API key or other LLM provider key
 
@@ -113,14 +108,10 @@ python src/app.py
 ```bash
 docker compose up
 ```
+- make sure to rename ``example.env`` to ``.env`` and provide API keys.
 
 ---
 
-## 💬 Contributing
-
-Contributions are welcome! Whether it’s optimizing inference, expanding LLM support, or translating to Rust — feel free to open a PR or start a discussion in the Issues.
-
----
 
 ## 🧠 Inspiration
 
@@ -129,12 +120,3 @@ This project draws on:
 * The power of LLMs to understand context and correct OCR noise
 * The need for enterprise-grade OCR tools that are fast, reliable, and easy to deploy
 
----
-
-## 📄 License
-
-MIT License. See `LICENSE` for details.
-
----
-
-Would you like a badge section, diagrams (e.g., architecture overview), or deployment instructions next?
