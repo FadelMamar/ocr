@@ -1,4 +1,4 @@
-# 🧠 OCR-as-a-Service (LLM-Powered Optical Character Recognition)
+# 🧠 OCR-as-a-Service (VLM-Powered Optical Character Recognition)
 
 Welcome to the OCR project! This repository hosts a performant and extensible web service that performs **Optical Character Recognition (OCR)** using **Visual Language Models (VLMs)** via API calls. The initial implementation is in **Python**, with plans to introduce **Rust** for further performance gains.
 
