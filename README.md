@@ -1,6 +1,6 @@
 # 🧠 OCR-as-a-Service (LLM-Powered Optical Character Recognition)
 
-Welcome to the OCR project! This repository hosts a performant and extensible web service that performs **Optical Character Recognition (OCR)** using **Large Language Models (LLMs)** via API calls. The initial implementation is in **Python**, with plans to introduce **Rust** for further performance gains.
+Welcome to the OCR project! This repository hosts a performant and extensible web service that performs **Optical Character Recognition (OCR)** using **Visual Language Models (VLMs)** via API calls. The initial implementation is in **Python**, with plans to introduce **Rust** for further performance gains.
 
 
 ---
@@ -10,7 +10,7 @@ Welcome to the OCR project! This repository hosts a performant and extensible we
 Our goal is to create a **high-performance OCR web service** that:
 
 * Extracts text from images using modern OCR techniques
-* Leverages **LLMs** for enhanced interpretation and post-processing
+* Leverages **VLMs** for enhanced interpretation and post-processing
 * Prioritizes **speed, scalability, and robustness**
 * Serves real-time and batch OCR use cases in business environments
 
@@ -44,7 +44,7 @@ Despite existing solutions, many OCR tools:
 
 This project addresses these limitations by:
 
-* Using **LLMs** to interpret ambiguous or noisy text
+* Using **VLMs** to interpret ambiguous or noisy text
 * Designing a **modular web API** that's easy to extend
 * Focusing on **low-latency and high throughput**
 * Enabling multi-language and multi-format support
@@ -57,8 +57,7 @@ This project addresses these limitations by:
 | ----------------- | -------------------------------------------------- |
 | Language          | Python (Rust planned)                              |
 | Model API         | OpenAI / Claude / Other LLM APIs                   |
-| OCR Engine        | Tesseract (for baseline) + optional LLM refinement |
-| API Framework     | Litserve (Python)                                   |
+| API Framework     | Litserve (Python)                                  |
 | Performance Focus | Rust rewrite (planned) for speed-critical modules  |
 | Testing           | Pytest + Benchmark tools                           |
 
