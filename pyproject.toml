@@ -5,6 +5,8 @@ description = "OCR web service"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "docling>=2.37.0",
+    "dspy==2.6.19",
     "fire>=0.7.0",
     "litserve>=0.2.11",
     "llama-index>=0.12.40",
@@ -16,4 +18,5 @@ dependencies = [
     "pillow<11.0.0",
     "pip>=25.1.1",
     "python-dotenv>=1.1.0",
+    "spyder-kernels==3.0.*",
 ]
