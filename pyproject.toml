@@ -9,7 +9,7 @@ dependencies = [
     "dspy==2.6.19",
     "fire>=0.7.0",
     "litserve>=0.2.11",
-    "llama-index>=0.12.40",
+    "llama-index",
     "llama-index-llms-google-genai>=0.2.1",
     "llama-index-multi-modal-llms-ollama>=0.4.0",
     "notebook>=7.4.3",
