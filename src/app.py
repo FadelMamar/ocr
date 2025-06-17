@@ -1,53 +1,36 @@
 import litserve as ls
-from llama_index.core.llms import ChatMessage, ImageBlock,TextBlock
+# from llama_index.core.llms import ChatMessage, ImageBlock, TextBlock
 import os
-from llama_index.llms.google_genai import GoogleGenAI
+# from llama_index.llms.google_genai import GoogleGenAI
 import base64
 import logging
+from ocr import GeminiExtractor, DspyExtractor, DoclingExtractor #, Extractor
 
 ls.configure_logging(use_rich=True)
 
-logger = logging.getLogger("OCR")
-
-def perform_ocr(prompt:str,image:bytes, llm):
-
-    msg = ChatMessage(
-        role="user",
-        blocks=[
-            ImageBlock(image=image),
-            TextBlock(text=prompt),
-        ],
-    )
-
-    resp = llm.chat([msg])
-
-    text = resp.message.blocks[0].text
-
-    return text
-
-PROMPT = "Extract the text from the image. Reply directly. DO NOT TRANSLATE"
+logger = logging.getLogger("API")
 
 class OCR(ls.LitAPI):
 
     def setup(self, device):
-
-        api_key = os.environ.get("GOOGLE_API_KEY",None)
-
-        if api_key is None:
-            raise ValueError("GOOGLE_API_KEY env variable is not set.")
         
-        model = os.environ.get("GOOGLE_MODEL","gemini-2.5-flash-preview-04-17")
-
-        logger.info(f"Loading model: {model}")
-
-        self.llm = GoogleGenAI(
-            model=model,
-            temperature=0.1
-        )
+        model = os.environ.get("MODEL")
+        tmp = float(os.environ.get("TEMPERATURE",0.1))
+        
+        if os.environ("EXTRACTOR") == "dspy":
+           self.extractor = DspyExtractor(model=model,
+                                          temperature=tmp)
+           
+        elif os.environ("EXTRACTOR") == "gemini":
+            self.extractor = GeminiExtractor(model=model,
+                                             temperature=tmp)
+        
+        else:
+            raise NotImplementedError()
 
     def decode_request(self, request):
         image = request.get('image',None)
-        prompt = request.get('prompt',PROMPT)
+        prompt = request.get('prompt',None)
 
         if image:
             try:
@@ -61,14 +44,15 @@ class OCR(ls.LitAPI):
         return dict(image=image,prompt=prompt) 
     
     def predict(self, x:dict):
-        out = perform_ocr(llm=self.llm,**x)        
+        
+        out = self.extractor.run(**x)
+        
         return out
 
     def encode_response(self, output):
         return {"output": output} 
 
 if __name__ == "__main__":
-    port = 4242
     api = OCR()
     server = ls.LitServer(api, accelerator="auto")
-    server.run(port=port,pretty_logs=True)
+    server.run(port=4242,pretty_logs=True,generate_client_file=False)

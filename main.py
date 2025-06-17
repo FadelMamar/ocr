@@ -29,4 +29,13 @@ def send(image_file_path:str,prompt:str=None):
 
 
 if __name__ == "__main__":
-    fire.Fire()
+    # fire.Fire()
+    
+    send("D:/workspace/repos/ocr/data/0-Immatriculation DGI NIF.jpg")
+    
+    pass
+    
+    
+    
+    
+
