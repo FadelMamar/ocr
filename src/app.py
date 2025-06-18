@@ -16,12 +16,18 @@ class OCR(ls.LitAPI):
         
         model = os.environ.get("MODEL")
         tmp = float(os.environ.get("TEMPERATURE",0.1))
+        name = os.environ.get("EXTRACTOR")
+
+        if model is None:
+           raise ValueError("Set environment variable 'MODEL'") 
+        if name is None:
+            raise ValueError("Set environment variable 'EXTRACTOR'")
         
-        if os.environ("EXTRACTOR") == "dspy":
+        if  name == "dspy":
            self.extractor = DspyExtractor(model=model,
                                           temperature=tmp)
            
-        elif os.environ("EXTRACTOR") == "gemini":
+        elif name == "gemini":
             self.extractor = GeminiExtractor(model=model,
                                              temperature=tmp)
         

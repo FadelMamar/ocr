@@ -17,6 +17,8 @@ dependencies = [
     "pdf2image>=1.17.0",
     "pillow<11.0.0",
     "pip>=25.1.1",
+    "pypdf>=5.6.0",
     "python-dotenv>=1.1.0",
     "spyder-kernels==3.0.*",
+    "streamlit>=1.46.0",
 ]

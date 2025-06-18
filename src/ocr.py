@@ -58,19 +58,29 @@ class DspyExtractor(Extractor):
                  model:str='ollama_chat/gemma3:4b',
                  api_key:str='',
                  temperature:float=0.1,
-                 api_url:str|None='http://localhost:11434',
+                 api_url:str|None=None,
+                 ollama_url:str='http://localhost:11434',
                  cache:bool=True,
                  **kwargs):
         
         if api_url is not None:
             lm = dspy.LM(model, 
+                         temperature=temperature,
                          api_base=api_url, 
                          api_key=api_key,
+                         cache=cache,
+                         **kwargs)
+        elif "ollama_chat" in model:
+            lm = dspy.LM(model, 
+                         api_key=api_key,
+                         temperature=temperature,
+                         api_base=ollama_url,
                          cache=cache,
                          **kwargs)
         else:
             lm = dspy.LM(model, 
                          api_key=api_key,
+                         temperature=temperature,
                          cache=cache,
                          **kwargs)
         
@@ -108,18 +118,18 @@ class DoclingExtractor(Extractor):
     
     
     
-if __name__ == "__main__":
-    from dotenv import load_dotenv
+# if __name__ == "__main__":
+#     from dotenv import load_dotenv
     
-    load_dotenv("../.env")
+#     load_dotenv("../.env")
        
-    extractor = DspyExtractor(model='gemini/gemini-2.5-flash-preview-04-17',
-                              temperature=0.1,
-                              api_url=None,
-                              api_key=os.environ.get("GOOGLE_API_KEY")
-                              )
+    # extractor = DspyExtractor(model='gemini/gemini-2.5-flash-preview-04-17',
+    #                           temperature=0.1,
+    #                           api_url=None,
+    #                           api_key=os.environ.get("GOOGLE_API_KEY")
+    #                           )
     
-    with open("D:/workspace/repos/ocr/data/0-Immatriculation DGI NIF.jpg","rb") as image:
-        out = extractor.run(image=image.read())
+    # with open("D:/workspace/repos/ocr/data/0-Immatriculation DGI NIF.jpg","rb") as image:
+    #     out = extractor.run(image=image.read())
     
-    print(out)
+    # print(out)

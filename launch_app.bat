@@ -21,4 +21,5 @@ if exist .env (
     echo .env file not found
 )
 
+start streamlit run src/ui.py --server.port 8500
 call python src\app.py

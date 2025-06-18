@@ -30,15 +30,16 @@ COPY --from=builder /opt/venv /opt/venv
 
 ENV VIRTUAL_ENV=/opt/venv
 ENV GOOGLE_API_KEY=
-ENV GOOGLE_MODEL="gemini-2.5-flash-preview-04-17"
+ENV MODEL="gemini/gemini-2.5-flash-preview-04-17"
 
 # Copy source code only
-COPY src/app.py ./
+COPY src/ ./
 
 # Expose inference port
 EXPOSE 4242
+EXPOSE 8500
 
 # RUN source /opt/venv/bin/activate
 
 # Entrypoint
-CMD ["uv", "run", "python", "app.py"]
+CMD ["./start_services.sh"]
