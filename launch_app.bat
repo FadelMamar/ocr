@@ -2,7 +2,7 @@ call cd "D:\workspace\repos\ocr"
 
 call .venv\Scripts\activate
 
-@REM call set 
+@REM load env variables from .env file
 
 if exist .env (
     echo Loading .env file...

@@ -1,5 +1,3 @@
-# env_file: .env
-
 services:
 
   ocr:
@@ -18,3 +16,4 @@ services:
 
     ports:
       - "4242:4242"
+      - "8500:8500"
