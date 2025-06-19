@@ -24,7 +24,7 @@ def extract_data(
     prompt: str = None,
     out_images: list = None,
     url: str = "http://localhost:4242/predict",
-):
+)->list[str]:
     def send_one_image(image: Image.Image) -> str:
         # PIL -> bytes
         img_byte_arr = BytesIO()

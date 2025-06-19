@@ -54,6 +54,7 @@ class DspyExtractor(Extractor):
     def __init__(self,
                  model:str='ollama_chat/gemma3:4b',
                  temperature:float=0.1,
+                 prompting_mode:str="basic",
                  cache:bool=True,
                  **kwargs):
         
@@ -83,7 +84,10 @@ class DspyExtractor(Extractor):
                          **kwargs)
         
         dspy.configure(lm=lm)
-        self.llm = dspy.ChainOfThought(ExtractorSignature)
+        if prompting_mode == "cot":
+            self.llm = dspy.ChainOfThought(ExtractorSignature)
+        else:
+            self.llm = dspy.Predict(ExtractorSignature)
     
     def run(self,image:bytes,prompt:str=None):
         
