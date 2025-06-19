@@ -1,0 +1,56 @@
+# Python cache and metadata
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python build artifacts
+*.egg-info/
+*.egg
+build/
+dist/
+.eggs/
+
+# UV-specific cache
+.uv/
+
+# Virtual environments (if any)
+.venv/
+venv/
+ENV/
+env/
+
+# PEP 610 / wheel metadata
+pip-wheel-metadata/
+
+# PyInstaller
+*.spec
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Testing / coverage
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+pytest_cache/
+
+# Typing tools
+.mypy_cache/
+.pytype/
+.pyre/
+
+# IDEs / editors
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Docker build context
+.dockerignore
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml

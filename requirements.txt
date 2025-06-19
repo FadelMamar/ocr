@@ -1,0 +1,8 @@
+dspy==2.6.19
+litserve>=0.2.11
+llama-index
+llama-index-llms-google-genai>=0.2.1
+pdf2image>=1.17.0
+pillow<11.0.0
+python-dotenv>=1.1.0
+streamlit>=1.46.0
