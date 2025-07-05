@@ -1,8 +1,8 @@
 import logging
 import os
 
-import litserve as ls
 from fastapi import HTTPException
+import litserve as ls
 from orchestrator import build_orchestrator
 
 ls.configure_logging(use_rich=True)

@@ -1,14 +1,11 @@
+from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from io import BytesIO
 import logging
 import os
 import re
 import tempfile
-from abc import ABC, abstractmethod
-from dataclasses import dataclass
-from io import BytesIO
 
-import dspy
-import numpy as np
-import torch
 from docling.datamodel import vlm_model_specs
 from docling.datamodel.base_models import InputFormat
 from docling.datamodel.pipeline_options import (
@@ -19,10 +16,13 @@ from docling.datamodel.pipeline_options import (
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.pipeline.vlm_pipeline import VlmPipeline
 from docling_core.types.io import DocumentStream
+import dspy
 from huggingface_hub import snapshot_download
 from llama_index.core.llms import ChatMessage, ImageBlock, TextBlock
 from llama_index.llms.google_genai import GoogleGenAI
+import numpy as np
 from PIL import Image
+import torch
 from transformers import AutoProcessor, VisionEncoderDecoderModel
 
 

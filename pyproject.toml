@@ -46,6 +46,10 @@ ignore = [
 
 [tool.ruff.lint.isort]
 known-first-party = ["src"]
+force-sort-within-sections = true
+force-wrap-aliases = true
+combine-as-imports = true
+split-on-trailing-comma = false
 
 [tool.ruff.format]
 quote-style = "double"
