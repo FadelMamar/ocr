@@ -122,7 +122,7 @@ def test_dolphin(
             image_bytes = load_sample_image()
         orchestrator_dolphin = build_orchestrator(extractor_type="dolphin")
         result_dolphin = orchestrator_dolphin.run(
-            data=image_bytes, filetype="image", prompt=None
+            data=image_bytes, filetype="image", prompt=""
         )
         print(result_dolphin)
         return result_dolphin
@@ -186,7 +186,7 @@ def test_all(
     results["rapidocr"] = test_rapidocr(prompt=prompt)
     results["gemini"] = test_gemini(prompt=prompt)
     results["dspy"] = test_dspy(prompt=prompt)
-    results["dolphin"] = test_dolphin(prompt=prompt)
+    results["dolphin"] = test_dolphin()
 
     # Test PDF processing
     results["pdf"] = test_pdf(prompt=prompt)

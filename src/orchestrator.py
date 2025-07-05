@@ -1,4 +1,4 @@
-from .extractor import (
+from extractor import (
     DoclingExtractor,
     DolphinExtractor,
     DspyExtractor,
@@ -6,7 +6,7 @@ from .extractor import (
     RapidOCRExtractor,
     SmolDoclingExtractor,
 )
-from .loader import DataLoader
+from loader import DataLoader
 
 EXTRACTOR_MAP = {
     "gemini": GeminiExtractor,
