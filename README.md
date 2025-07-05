@@ -292,18 +292,6 @@ The service supports multiple OCR extractors, each optimized for different use c
 - **Performance**: High accuracy, flexible prompting
 
 
-### Extractor Comparison
-
-| Extractor | Speed | Accuracy | Setup | Best Use Case |
-|-----------|-------|----------|-------|---------------|
-| SmolDocling | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | General purpose |
-| RapidOCR | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐⭐ | Fast processing |
-| Gemini | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Complex documents |
-| Dspy | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐ | Advanced reasoning |
-| Dolphin | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | Structured documents |
-
----
-
 ## 🏗️ Project Architecture
 
 ### Codebase Structure
@@ -462,12 +450,6 @@ We welcome contributions! Here's how to get started:
 - Add tests for new extractors in `examples/run_ocr.py`
 - Test with various image formats and quality levels
 - Ensure error handling works correctly
-
----
-
-## 📄 License
-
-[Add your license information here]
 
 ---
 
