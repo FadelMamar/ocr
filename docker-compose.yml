@@ -7,9 +7,6 @@ services:
 
     image: ocr:latest
 
-    # environment:
-    #   GOOGLE_API_KEY: 
-    #   GOOGLE_MODEL: gemini-2.5-flash-preview-04-17
 
     env_file: 
       - ./.env

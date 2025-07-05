@@ -34,9 +34,9 @@ WORKDIR /workspace
 
 # ENV VIRTUAL_ENV=/opt/venv
 # ENV GOOGLE_API_KEY=
-ENV MODEL="gemini/gemini-2.5-flash-preview-05-20"
-ENV EXTRACTOR="dspy"
-ENV TEMPERATURE=0.1
+# ENV MODEL="gemini/gemini-2.5-flash-preview-05-20"
+# ENV EXTRACTOR="dspy"
+# ENV TEMPERATURE=0.1
 
 # Copy source code only
 COPY src/ ./

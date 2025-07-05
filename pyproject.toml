@@ -3,8 +3,9 @@ name = "ocr"
 version = "0.1.0"
 description = "OCR web service"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = "~=3.11"
 dependencies = [
+    "accelerate>=1.8.1",
     "docling>=2.37.0",
     "dspy==2.6.19",
     "fire>=0.7.0",
@@ -22,3 +23,32 @@ dependencies = [
     "spyder-kernels==3.0.*",
     "streamlit>=1.46.0",
 ]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by ruff formatter
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["src"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"

@@ -1,8 +1,9 @@
-import litserve as ls
-import os
-import base64
 import logging
-from ocr import GeminiExtractor, DspyExtractor
+import os
+
+import litserve as ls
+from fastapi import HTTPException
+from orchestrator import build_orchestrator
 
 ls.configure_logging(use_rich=True)
 
@@ -11,46 +12,47 @@ logger = logging.getLogger("API")
 
 class OCR(ls.LitAPI):
     def setup(self, device):
-        model = os.environ.get("MODEL")
-        tmp = float(os.environ.get("TEMPERATURE", 0.1))
-        name = os.environ.get("EXTRACTOR")
-
-        if model is None:
-            raise ValueError("Set environment variable 'MODEL'")
-        if name is None:
-            raise ValueError("Set environment variable 'EXTRACTOR'")
-
-        if name == "dspy":
-            logger.info(f"Using DspyExtractor with model {model} and temperature {tmp}")
-            self.extractor = DspyExtractor(model=model, temperature=tmp)
-
-        elif name == "gemini":
-            self.extractor = GeminiExtractor(model=model, temperature=tmp)
-
-        else:
-            raise NotImplementedError()
+        # Default extractor type and model from environment
+        self.default_extractor = os.environ.get("EXTRACTOR", "smoldocling")
 
     def decode_request(self, request):
-        image = request.get("image", None)
+        # Accepts: data (bytes or base64), prompt, extractor, filetype
+        data = request.get("data", None)
         prompt = request.get("prompt", None)
+        extractor = request.get("extractor", self.default_extractor)
+        filetype = request.get("filetype", None)
 
-        if image:
-            try:
-                image = base64.b64decode(image)
-            except Exception as e:
-                print(e)
+        if data is None:
+            raise HTTPException(status_code=500, detail="'data' is required in request")
 
-        else:
-            raise ValueError("Image is not provided")
+        logger.info(f"Decoded request: extractor={extractor}, filetype={filetype}")
 
-        return dict(image=image, prompt=prompt)
+        return dict(data=data, prompt=prompt, extractor=extractor, filetype=filetype)
 
     def predict(self, x: dict):
-        out = self.extractor.run(**x)
-
-        return out
+        try:
+            logger.info("Running OCR...")
+            orchestrator = build_orchestrator(
+                extractor_type=x["extractor"],
+                temperature=float(os.environ.get("TEMPERATURE", 0.7)),
+                model=os.environ.get("MODEL"),
+                prompting_mode="basic",
+                cache=True,
+            )
+            out = orchestrator.run(
+                data=x["data"], filetype=x["filetype"], prompt=x["prompt"]
+            )
+            return out
+        except ValueError as ve:
+            logger.error(f"ValueError: {ve}")
+            raise HTTPException(status_code=400, detail=str(ve))
+        except Exception as e:
+            logger.error(f"Internal error: {e}")
+            raise HTTPException(status_code=500, detail=f"Internal server error: {e}")
 
     def encode_response(self, output):
+        # If output is an HTTPException, return error structure
+        logger.info(f"Encoding response: {output}")
         return {"output": output}
 
 
